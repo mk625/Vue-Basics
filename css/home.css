@@ -1,0 +1,17 @@
+
+
+.app-container {
+    padding: 24px;
+    width: 100vw;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+.user-card {
+    width: 250px;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0px 0px 2px 2px var(--c-gray-95);
+    border: 1px solid var(--c-gray-90);
+}
+
