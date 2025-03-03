@@ -82,7 +82,7 @@
                 <h2>Card Component</h2>
             </div>
             <div>
-                <div class="d-flx g10">
+                <div class="d-flx g-10">
                     <user-card name="Muthu Kumar" mail="mk@gmail.com" address="Tirunelveli"></user-card>
                     <user-card name="Sam" mail="sam@gmail.com" address="Tirunelveli"></user-card>
                 </div>
@@ -112,7 +112,7 @@
             </div>
             <div>
                 <div class="mB15">
-                    <div class="d-flx g10">
+                    <div class="d-flx g-10">
                         <input class="input-ele" type="text" v-model="task_val" placeholder="Enter Task">
                         <button class="btn btn-primary" @click="add_task">Add Task</button>
                     </div>
@@ -129,6 +129,25 @@
                 </div>
             </div>
         </section>
+
+        <!-- <section class="mB50">
+            <div class="mB10">
+                <h2>Form Submission</h2>
+            </div>
+            <form @submit.prevent="validate_form">
+                <div class="mB15">
+                    <input class="input-ele mB10" v-model="user_name_input" type="text" placeholder="Enter Name">
+                    <p v-if="user_name_error"> Enter user name please </p>
+                </div>
+                <div class="mB15">
+                    <input class="input-ele mB10" v-model="password_input" type="password" placeholder="Enter Password">
+                    <p v-if="password_error"> Enter password please </p>
+                </div>
+                <div>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </section> -->
     </div>
     
 
@@ -163,6 +182,10 @@
                         },
                         task_val: "",
                         tasks: [],
+                        user_name_input: "",
+                        user_name_error: false,
+                        password_input: "",
+                        password_error: false,
                     };
                 },
 
@@ -209,6 +232,12 @@
                                 <address> {{ address }} </address>
                             </div>
                         `
+                    }
+                },
+
+                setup() {
+                    const validate_form = () => {
+
                     }
                 }
             }).mount("#vue-app");
