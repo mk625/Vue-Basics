@@ -1,6 +1,30 @@
 
-const { createApp } = Vue;
+const { createApp, defineAsyncComponent } = Vue;
 const { createRouter, createWebHashHistory } = VueRouter;
+
+
+// routing
+    const getHtml = (file_name) => () => 
+        fetch(file_name + ".html")
+            .then(res => res.text())
+            .then(template => ({ template }));
+
+
+    const routes = [
+        { path: "/", component: getHtml("home") },
+        { path: "/page-1", component: getHtml("page-1") },
+        { path: "/page-2", component: getHtml("page-2") }
+    ];
+
+    // Create Router instance
+    const router = createRouter({
+        history: createWebHashHistory(),
+        routes
+    });
+// \\\ routing
+
+
+
 
 
 const app = createApp({
@@ -84,14 +108,6 @@ const app = createApp({
     }
 })
     
-
-
-// imports
-const router = createRouter({
-    history: createWebHashHistory(),
-    routes
-});
-// \\\ imports
 
 
 // app mounting
