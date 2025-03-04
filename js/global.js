@@ -1,5 +1,7 @@
 
 const { createApp } = Vue;
+const { createRouter, createWebHashHistory } = VueRouter;
+
 
 const app = createApp({
     data() {
@@ -82,5 +84,19 @@ const app = createApp({
     }
 })
     
-app.mount("#vue-app");
+
+
+// imports
+const router = createRouter({
+    history: createWebHashHistory(),
+    routes
+});
+// \\\ imports
+
+
+// app mounting
+    app.use(router);
+    app.mount("#vue-app");
+// \\\ app mounting
+
 
