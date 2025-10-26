@@ -52,6 +52,33 @@ const app = createApp({
             user_name_error: false,
             password_input: "",
             password_error: false,
+            users: [
+                {
+                    name: "John Doe",
+                    mail: "john.doe@email.com",
+                    address: "123 Main Street, New York, NY 10001"
+                },
+                {
+                    name: "Jane Smith",
+                    mail: "jane.smith@email.com",
+                    address: "456 Oak Avenue, Los Angeles, CA 90210"
+                },
+                {
+                    name: "Mike Johnson",
+                    mail: "mike.johnson@email.com",
+                    address: "789 Pine Road, Chicago, IL 60601"
+                },
+                {
+                    name: "Sarah Wilson",
+                    mail: "sarah.wilson@email.com",
+                    address: "321 Elm Street, Houston, TX 77001"
+                },
+                {
+                    name: "David Brown",
+                    mail: "david.brown@email.com",
+                    address: "654 Maple Drive, Phoenix, AZ 85001"
+                }
+            ],
         };
     },
 
