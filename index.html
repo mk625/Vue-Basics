@@ -34,134 +34,166 @@
 </head>
 
 <body>
-    
+
     <div class="app-container" id="vue-app">
-        <section class="mB50">
-            <h2 class="mB10"> {{custom_msg}} </h2>
-            <button class="btn btn-primary" @click="update_msg">Add</button>
-        </section>
+        <!-- custom msg -->
+            <section class="mB50">
+                <h2 class="mB10"> {{custom_msg}} </h2>
+                <button class="btn btn-primary" @click="update_msg">Add</button>
+            </section>
+        <!-- \\\ custom msg -->
 
-        <section class="mB50">
-            <div v-if="isDivVisible" class="mB5">
-                <p>Visibling Div</p>
-            </div>
-            <button class="btn btn-primary" @click="isDivVisible=!isDivVisible">Add</button>
-        </section>
 
-        <section class="mB50">
-            <div class="mB10">
-                <h2>Fruits List</h2>
-            </div>
-            <ul>
-                <li v-for="(fruit, index) in fruits" :key="index">
-                    <span>{{fruit}}</span>
-                </li>
-            </ul>
-        </section>
-
-        <section class="mB50">
-            <div class="mB10">
-                <h2>Computed Input</h2>
-            </div>
-            <div>
-                <input class="input-ele mB10" type="text" v-model="computed_msg" placeholder="Enter Computed Message">
-                <p> {{updated_computed_msg}} </p>
-            </div>
-        </section>
-
-        <section class="mB50">
-            <div class="mB10">
-                <h2>Watcher Input</h2>
-            </div>
-            <div>
-                <input class="input-ele mB10" type="text" v-model="watcher_msg" placeholder="Enter Watcher Message">
-                <p> {{ watcher_msgs.old_watcher_msg }} {{watcher_msgs.new_watcher_msg}} </p>
-            </div>
-        </section>
-
-        <section class="mB50">
-            <div class="mB10">
-                <h2>Card Component</h2>
-            </div>
-            <div>
-                <div class="d-flx g-10">
-                    <user-card name="Muthu Kumar" mail="mk@gmail.com" address="Tirunelveli"></user-card>
-                    <user-card name="Sam" mail="sam@gmail.com" address="Tirunelveli"></user-card>
-                </div>
-            </div>
-        </section>
-
-        <section class="mB50">
-            <div class="mB10">
-                <h2>API Data Fetching</h2>
-            </div>
-            <div>
-                <div class="mB10">
-                    <button class="btn btn-primary" @click="fetch_user">Fetch Random Usesr</button>
+        <!-- toogle visibility -->
+            <section class="mB50">
+                <div v-if="isDivVisible" class="mB8">
+                    <h2>Visibling Div</h2>
                 </div>
                 <div>
-                    <ul>
-                        <li><span> <b>Name:</b> {{ users_res_data.name.first }} {{ users_res_data.name.last }} </span></li>
-                        <li><span> <b>Mail:</b> {{ users_res_data.email }} </span></li>
-                    </ul>
+                    <button class="btn btn-primary" @click="isDivVisible=!isDivVisible">Toogle Visibility</button>
                 </div>
-            </div>
-        </section>
+            </section>
+        <!-- \\\ toogle visibility -->
 
-        <section class="mB50">
-            <div class="mB10">
-                <h2>To Do List</h2>
-            </div>
-            <div>
-                <div class="mB15">
-                    <div class="d-flx g-10">
-                        <input class="input-ele" type="text" v-model="task_val" placeholder="Enter Task">
-                        <button class="btn btn-primary" @click="add_task">Add Task</button>
-                    </div>
+
+        <!-- fruits list -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>Fruits List</h2>
                 </div>
-                <div class="max-w-400 w100">
-                    <ul>
-                        <li class="mB10" v-for="(task, index) in tasks" :key="index">
-                            <div class="d-flx aI-C jC-SB">
-                                <span> {{task}} </span>
-                                <a @click="remove_task(index)">Delete</a>
-                            </div>
+                <ul>
+                    <li v-for="(fruit, index) in fruits" :key="index">
+                        <span>{{fruit}}</span>
+                    </li>
+                </ul>
+            </section>
+        <!-- \\\ fruits list -->
+
+
+        <!-- computed input -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>Computed Input</h2>
+                </div>
+                <div>
+                    <input class="input-ele mB10" type="text" v-model="computed_msg" placeholder="Enter Computed Message">
+                    <p> {{updated_computed_msg}} </p>
+                </div>
+            </section>
+        <!-- \\\ computed input -->
+
+
+        <!-- watcher input -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>Watcher Input</h2>
+                </div>
+                <div>
+                    <input class="input-ele mB10" type="text" v-model="watcher_msg" placeholder="Enter Watcher Message">
+                    <p> {{ watcher_msgs.old_watcher_msg }} {{watcher_msgs.new_watcher_msg}} </p>
+                </div>
+            </section>
+        <!-- \\\ watcher input -->
+
+
+        <!-- card component -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>Card Component</h2>
+                </div>
+                <div>
+                    <ul class="d-flx g-10 fw-w">
+                        <li v-for="(user, index) in users" :key="index">
+                            <user-card :name="user.name" :mail="user.mail" :address="user.address"/>
                         </li>
                     </ul>
                 </div>
-            </div>
-        </section>
+            </section>
+        <!-- \\\ card component -->
 
-        <!-- <section class="mB50">
-            <div class="mB10">
-                <h2>Form Submission</h2>
-            </div>
-            <form @submit.prevent="validate_form">
-                <div class="mB15">
-                    <input class="input-ele mB10" v-model="user_name_input" type="text" placeholder="Enter Name">
-                    <p v-if="user_name_error"> Enter user name please </p>
-                </div>
-                <div class="mB15">
-                    <input class="input-ele mB10" v-model="password_input" type="password" placeholder="Enter Password">
-                    <p v-if="password_error"> Enter password please </p>
+
+        <!-- api data fetching -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>API Data Fetching</h2>
                 </div>
                 <div>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <div class="mB10">
+                        <button class="btn btn-primary" @click="fetch_user">Fetch Random Usesr</button>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><span> <b>Name:</b> {{ users_res_data.name.first }} {{ users_res_data.name.last }} </span></li>
+                            <li><span> <b>Mail:</b> {{ users_res_data.email }} </span></li>
+                        </ul>
+                    </div>
                 </div>
-            </form>
-        </section> -->
-    
-        <section class="mB50">
-            <div class="mB10">
-                <h2>Routing</h2>
-            </div>
-            <div class="d-flx aI-C g-10 mB10">
-                <router-link to="/" tag="button">Home</router-link>
-                <router-link to="/page-1" tag="button">Page 1</router-link>
-                <router-link to="/page-2" tag="button">Page 2</router-link>
-            </div>
-            <router-view> </router-view>
-        </section>
+            </section>
+        <!-- \\\ api data fetching -->
+
+
+        <!-- to do list -->
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>To Do List</h2>
+                </div>
+                <div>
+                    <div class="mB15">
+                        <div class="d-flx g-10">
+                            <input class="input-ele" type="text" v-model="task_val" placeholder="Enter Task">
+                            <button class="btn btn-primary" @click="add_task">Add Task</button>
+                        </div>
+                    </div>
+                    <div class="max-w-400 w100">
+                        <ul>
+                            <li class="mB10" v-for="(task, index) in tasks" :key="index">
+                                <div class="d-flx aI-C jC-SB">
+                                    <span> {{task}} </span>
+                                    <a @click="remove_task(index)">Delete</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        <!-- \\\ to do list -->
+
+
+        <!-- form submission -->
+            <!-- <section class="mB50">
+                <div class="mB10">
+                    <h2>Form Submission</h2>
+                </div>
+                <form @submit.prevent="validate_form">
+                    <div class="mB15">
+                        <input class="input-ele mB10" v-model="user_name_input" type="text" placeholder="Enter Name">
+                        <p v-if="user_name_error"> Enter user name please </p>
+                    </div>
+                    <div class="mB15">
+                        <input class="input-ele mB10" v-model="password_input" type="password" placeholder="Enter Password">
+                        <p v-if="password_error"> Enter password please </p>
+                    </div>
+                    <div>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </section> -->
+        <!-- \\\ form submission -->
+
+
+        <!-- routing -->    
+            <section class="mB50">
+                <div class="mB10">
+                    <h2>Routing</h2>
+                </div>
+                <div class="d-flx aI-C g-10 mB10">
+                    <router-link to="/" tag="button">Home</router-link>
+                    <router-link to="/page-1" tag="button">Page 1</router-link>
+                    <router-link to="/page-2" tag="button">Page 2</router-link>
+                </div>
+                <router-view> </router-view>
+            </section>
+        <!-- \\\ routing -->
     </div>
     
 
